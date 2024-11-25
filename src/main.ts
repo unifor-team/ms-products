@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { configCors, configSwagger } from './core/config';
+import { configClassValidator, configCors, configSwagger } from './core/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -12,6 +12,8 @@ async function bootstrap() {
       url: "localhost:5000/swagger"
     }
   })
+
+  configClassValidator(app)
 
   await app.listen(process.env.PORT ?? 5000);
 }

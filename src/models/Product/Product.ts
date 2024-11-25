@@ -18,6 +18,7 @@ export class Product {
         this.quantity = quantity;
         this.created_at = new Date();
         this.user_id = user_id;
+        this.sold = false;
      }
 
      public static build(user_id: string, name: string, value: number, quantity: number) {

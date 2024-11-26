@@ -12,7 +12,11 @@ export class ProductService {
         return this.respository.listAll();
     }
 
-    async create(params: CreateProduct) {
+    async listById(id: string): Promise<Products | null> {
+        return this.respository.listById(id);
+    }
+
+    async create(params: CreateProduct): Promise<Products> {
         const product = Product.build(
             params.userId,
             params.name,
@@ -21,4 +25,16 @@ export class ProductService {
         )
         return this.respository.insert(product);
     }
+
+    async update(params: Partial<CreateProduct>, id: string): Promise<Products | null> {
+        const product = Product.build(
+            params.userId,
+            params.name,
+            params.value,
+            params.quantity
+        )
+
+        return this.respository.update(product, id);
+    }
+
 }
